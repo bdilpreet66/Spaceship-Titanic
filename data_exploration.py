@@ -20,20 +20,32 @@ test = pd.read_csv('test.csv')
 ###################################
 
 # Size
-train.shape
+print("Shape:",train.shape,"\n")
 
-# Top 5 cols
-train.head()
+# Top 10 cols
+print("Top 10 Columns")
+print(train.head(10))
 
 # List all cols
-train.columns
+print("\nColumn Names")
+print(train.columns)
 
 # list null value count in each cols
-train.isnull().sum()
+print("\nNumber of null values in each of these columns")
+print(train.isnull().sum())
 
 # list non-null value count in each cols
-train.info()
+print("\nNumber of non-null values in each of these columns")
+print(train.info())
 
 # list null value percentage in each cols
-train.isnull().mean() * 100
+print("\n percentage of null values in each column")
+print(train.isnull().mean() * 100)
 
+# Since the missing data is small lets try removing the null values
+train_wn = train.dropna()
+# we just lost 25% of our data, that's a lot of data and we might not want to loose all tahat data so lets try something else
+
+############ HomePlanet ############
+print("Home Planed Consists of these three categories: ", train['HomePlanet'].dropna().unique())
+train['HomePlanet'].fillna(method='ffill').fillna(method='bfill')
